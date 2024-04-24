@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./Popular.css";
 import axios from "axios";
-import { Link,useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Popular.css";
+import { Panel } from "rsuite";
 
 const Popular = () => {
   useEffect(() => {
@@ -18,44 +19,41 @@ const Popular = () => {
       });
   }, []); // Empty dependency array ensures the effect runs only once, like componentDidMount
   const [data_product, setData_product] = useState([]);
-const Navigate = useNavigate();
+  const Navigate = useNavigate();
   return (
-    <div className="popular">
-      <h1>Products</h1>
+    <div className="popular" style={{ marginTop: "20px" }}>
+      <h1 style={{ color: "#111" }}>Products</h1>
       <hr />
 
-      <div className="popular-item">
+      <div
+        className="popular-item"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          padding: "50px",
+          justifyContent: "center",
+        }}
+      >
         {data_product.map((item, i) => {
           return (
-            <div
-              key={i}
-              onClick={() => {Navigate(`/product/${item.id}`)}}
-              style={{
-                border: "solid",
-                width: "180px",
-                borderRadius: 4,
-                borderColor: "black",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                flexDirection: "column",
-                padding: "10px",
-                textAlign: "center",
-              }}
+            <Panel
+              onClick={() => Navigate(`/product/${item.id}`)}
+              shaded
+              bordered
+              bodyFill
+              style={{ display: "inline-block", width: 240 }}
             >
-              <img
-                src="http://localhost:4000/uploads/image-1713968285679-Group.png"
-                style={{
-                  height: "40px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                }}
-                alt=""
-              />
-              <p>Name : {item.name}</p>
-              <p>New Price : {item.new_price}</p>
-              <p>Old Price : {item.old_price}</p>
-            </div>
+              <img src={item.image} height="240" />
+              <Panel header={item.name}>
+                <p>
+                  <small>Price: {item.old_price}</small>
+                </p>
+                <p>
+                  <small>Discounted price: {item.new_price}</small>
+                </p>
+              </Panel>
+            </Panel>
           );
         })}
       </div>

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Shop';
 import Cart from './Pages/Cart';
 import Products from './Pages/Products';
+import 'rsuite/dist/rsuite.min.css';
 
 
 function App() {

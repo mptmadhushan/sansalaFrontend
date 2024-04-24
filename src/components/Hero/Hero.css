@@ -1,6 +1,7 @@
 .hero{
     height: 100vh;
-    background: rgb(167, 183, 235);
+    width: 100vw;
+    background-image: '../Assets/2.jpg';
     display: flex;
 }
 

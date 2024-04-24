@@ -4,6 +4,7 @@ import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 import axios from "axios";
+import { Button } from "rsuite";
 const ProductDisplay = (props) => {
   console.log("🚀 ~ ProductDisplay ~ props:", props);
 
@@ -18,7 +19,7 @@ const ProductDisplay = (props) => {
       price: product.new_price,
     };
     axios
-      .post("http://localhost:4000/addtocart",  productData )
+      .post("http://localhost:4000/addtocart", productData)
       .then((response) => {
         console.log(response.data);
         // Handle the response data
@@ -52,7 +53,11 @@ const ProductDisplay = (props) => {
           <p>(122)</p>
         </div>
         <div>
-          <button onClick={() => addToCart(product)}>Add to Cart</button>
+          {/* <button onClick={() => addToCart(product)}>Add to Cart</button> */}
+
+          <Button onClick={() => addToCart(product)} appearance="primary">
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>
